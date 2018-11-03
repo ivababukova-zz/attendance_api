@@ -94,21 +94,8 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>2333134P</td>
-                  <td>Marcell PEK</td>
-                  <td><span class="text-success">Excellent</span> (5 out of 5)</td>
                 </tr>
 
-                <tr>
-                  <td>2123138D</td>
-                  <td>John DOE</td>
-                  <td><span class="text-warning">Acceptable</span> (4 out of 5)</td>
-                </tr>                
-                <tr>
-                  <td>2123136D</td>
-                  <td>Jane DOE</td>
-                  <td><span class="text-danger">Poor</span> (3 out of 5)</td>
-                </tr>
               </tbody>
             </table>
           </div>
@@ -132,9 +119,43 @@
         });
       });
 
-      $('#student-table > tbody  > tr').click(function() {
+
+      $(function() {
+        var all_students = $.ajax({
+            url: "http://localhost:5000/students",
+            dataType: "json",
+            type: "GET"
+        }).done(function(data) {
+            var data = data["students"];
+            data.forEach(function(student) {
+                var attendance_data = Object.values(student["attendance"]);
+                var attended = 0, total_attended = 0;
+
+                attendance_data.forEach(function(course) {
+                    total_attended += course.length;
+                   attended += course.reduce((a,b) => a + b, 0);
+                });
+
+                if(attended/total_attended > 0.5) {
+                    var attendance_status = "<td><span class=\"text-success\">Excellent</span> (" + attended + " out of " + total_attended + ")</td>";
+                }else{
+                    var attendance_status = "<td><span class=\"text-danger\">Poor</span> (" + attended + " out of " + total_attended + ")</td>";
+                }
+
+                var name = student["full_name"];
+                var id = student["student_id"];
+                var html = "<tr><td>" + id + "</td><td>" + name + "</td>" + attendance_status + "</tr>";
+
+                $("#student-table > tbody > tr:last").after(html);
+
+                      $('#student-table > tbody  > tr').click(function() {
+        console.log("ads");
         var guid = $(this).find('td').eq(0).text().toUpperCase();
-          
+        window.location.href = "/student/" + guid;
+      });
+            });
+
+        });
       });
     </script>
 

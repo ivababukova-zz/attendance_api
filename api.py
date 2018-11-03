@@ -1,9 +1,19 @@
 from students import Students
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, send_from_directory
 app = Flask(__name__)
 
 all_students = Students()
+
+
+@app.route('/')
+def get_index():
+    return send_from_directory("mocks/", "dashboard.html")
+
+
+@app.route('/assets/<path:path>')
+def send_js(path):
+    return send_from_directory("mocks/assets/", path)
 
 
 @app.route('/students')
