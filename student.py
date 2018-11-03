@@ -35,12 +35,12 @@ class Student:
         self.attendance[course_name][week_no-1] = 0
 
     def get_attendance_for_courses(self, course_names=None):
-        print("&^%*^%^*&%^$%#$^$&%$%^#% {}".format(self.attendance))
         attendance = {}
         if not course_names:
             return self.attendance
 
         for c in course_names:
-            if self.attendance.get(c):
+            if self.attendance.get(str(c)):
                 attendance[c] = self.attendance[c]
+
         return attendance
