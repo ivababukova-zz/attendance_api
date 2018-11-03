@@ -17,7 +17,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
   <!-- Custom styles for this template -->
-  <link href="assets/style_dashboard.css" rel="stylesheet">
+  <link href="//localhost:5000/assets/style_dashboard.css" rel="stylesheet">
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -151,7 +151,7 @@
                       $('#student-table > tbody  > tr').click(function() {
         console.log("ads");
         var guid = $(this).find('td').eq(0).text().toUpperCase();
-        window.location.href = "/student/" + guid;
+        window.location.href = "/student_info/" + guid;
       });
             });
 

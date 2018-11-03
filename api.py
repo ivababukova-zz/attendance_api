@@ -11,6 +11,11 @@ def get_index():
     return send_from_directory("mocks/", "dashboard.html")
 
 
+@app.route('/student_info/<id>')
+def get_student_info(id):
+    return send_from_directory("mocks/", "student_info.html")
+
+
 @app.route('/assets/<path:path>')
 def send_js(path):
     return send_from_directory("mocks/assets/", path)
