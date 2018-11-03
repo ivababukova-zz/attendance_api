@@ -86,6 +86,20 @@ class Students:
             )
         ]
 
+    def get_all_courses(self):
+        courses = []
+        for s in self.students:
+            courses.extend(s.courses)
+        return list(set(courses))
+
+    def get_course_attendance(self, course):
+        attendance = {}
+        for s in self.students:
+            if course in s.courses:
+                s_att = s.get_attendance_for_courses([course])
+                attendance[s.full_name] = s_att
+        return attendance
+
     def add_student(self, student_id, full_name, courses, attendance=None):
         s = Student(student_id, full_name, courses, attendance)
         self.students.append(s)

@@ -42,5 +42,6 @@ class Student:
         for c in course_names:
             if self.attendance.get(str(c)):
                 attendance[c] = self.attendance[c]
-
+                print(attendance[c])
+        print(attendance)
         return attendance

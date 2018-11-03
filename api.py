@@ -12,7 +12,7 @@ def get_students():
     for s in all_students.students:
         _, student_data = all_students.get_student_by_id(s.student_id)
         resp.append(student_data)
-    return jsonify({"resp": resp})
+    return jsonify({"students": resp})
 
 
 @app.route('/student/<id>')
@@ -35,8 +35,20 @@ def get_student_attendance_for_course(id, courses):
     return jsonify(student.get_attendance_for_courses(courses))
 
 
+@app.route('/courses')
+def get_all_courses():
+    return jsonify({
+        "courses": all_students.get_all_courses()
+    })
+
+
+@app.route("/courses/attendance/<course>")
+def get_course_attendance(course):
+    return jsonify(all_students.get_course_attendance(course))
+
+
 @app.route('/courses/<id>')
-def get_courses(id):
+def get_student_courses(id):
     student, _ = all_students.get_student_by_id(id)
     return jsonify({
         "student_name": student.full_name,
