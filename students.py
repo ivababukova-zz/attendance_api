@@ -51,7 +51,7 @@ class Students:
             ),
             Student(
                 student_id="5555",
-                full_name="Adam Kurkiewicz",
+                full_name="Alasdair Burnett",
                 courses=["Maths", "Chemistry", "Systems2", "Maths"],
             ),
             Student(

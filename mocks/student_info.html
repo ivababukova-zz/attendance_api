@@ -57,6 +57,9 @@
           <h2 class="sub-header">
             John Smith
               <small class="text-muted">BSc (Hons) Mathematics (<span class="text-success">Excellent</span>)</small>
+            <form style="float: right;">
+              <input type="text" class="form-control" placeholder="Search..." id="search-box">
+            </form>
           </h2>
             <h3 class="text-center">Attendance per semester</h3>
             <div class="container">
@@ -256,5 +259,28 @@
         </div>
       </div>
     </div>
+
+    <script>
+      $( "#search-box" ).keyup(function() {
+        var query = $( "#search-box" ).val().toUpperCase();
+        $('#student-table > tbody  > tr').each(function() {
+          var guid = $(this).find('td').eq(0).text().toUpperCase();
+          var name = $(this).find('td').eq(1).text().toUpperCase();
+
+          if(guid.indexOf(query) > -1 || name.indexOf(query) > -1) {
+            $(this).show();
+          } else {
+            $(this).hide();
+          }
+
+        });
+      });
+
+      $(function() {
+
+      });
+
+    </script>
+
   </body>
   </html>
