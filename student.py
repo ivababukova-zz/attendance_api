@@ -3,7 +3,7 @@ import random
 # search for student
 # attendance data
 
-WEEKS_PER_SEMESTER = 12
+WEEKS_PER_SEMESTER = 11
 
 
 class Student:
